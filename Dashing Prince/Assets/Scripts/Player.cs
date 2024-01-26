@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _dashForce;
     private Vector3 _moveDirection;
+    private Vector2 _dashDirection;
 
     private void Start()
     {
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        transform.position += speed * Time.deltaTime * _moveDirection;
+        transform.position += _speed * Time.deltaTime * _moveDirection;
     }
 
     public void SetMovementDirection(Vector2 currentDirection)
@@ -30,8 +32,13 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+         rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
 
+    public void Dash(Vector2 currentDirection)
+    {
+        _dashDirection = currentDirection;
+        rb.AddForce(currentDirection * _dashForce, ForceMode2D.Impulse);
+    }
 }
 

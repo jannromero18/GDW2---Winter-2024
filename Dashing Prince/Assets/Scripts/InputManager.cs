@@ -16,6 +16,10 @@ public static class InputManager
             p.Jump();  //action performed
         };
 
+        _ctrls.InGame.Dash.performed += c => {
+            p.Dash(c.ReadValue<Vector2>());
+        };
+        
     }
 
     public static void EnableInGame()

@@ -406,8 +406,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 2
+  m_AngularDrag: 3
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -544,7 +544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2660355ec8d41674aa7a361cef1cf8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  rb: {fileID: 1571955900}
+  _speed: 6
+  _jumpForce: 5
+  _dashForce: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
