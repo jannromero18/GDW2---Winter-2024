@@ -45,7 +45,15 @@ public class Player : MonoBehaviour
             Debug.Log("Player is not grounded.");
         }
 
-        Debug.Log("Lives: " + _lives);
+        if (_lives > 0)
+        {
+            Debug.Log("Lives: " + _lives);
+        }
+        else
+        {
+            Debug.Log("You died");
+        }
+
         Debug.Log("Score: " + _score);
     }
 
@@ -91,6 +99,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy made contact");
+            rb.AddForce(-_moveDirection * _knockbackForce, ForceMode2D.Impulse);
             _lives--;
         }
     }
