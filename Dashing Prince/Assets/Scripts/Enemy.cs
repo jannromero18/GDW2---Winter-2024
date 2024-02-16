@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int _lives;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.tag == "Attack")
+        {
+            _lives--;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (_lives ==  0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

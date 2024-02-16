@@ -10,6 +10,15 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Collider2D playerCollider;
 
+    // UI text component to display lives
+    public TextMeshProUGUI livesText;
+    // UI text component to display coin count
+    public TextMeshProUGUI coinText;
+    // UI object to display winning text.
+    public GameObject deadTextObject;
+
+    public GameObject attack;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _dashForce;
@@ -31,10 +40,17 @@ public class Player : MonoBehaviour
         InputManager.EnableInGame();
 
         rb = GetComponent<Rigidbody2D>();
+
+        // Initially set the win text to be inactive.
+        deadTextObject.SetActive(false);
     }
 
     void Update()
     {
+        SetLivesText();
+
+        SetCoinText();
+
         transform.position += _speed * Time.deltaTime * _moveDirection; //player movement
 
         if (IsGrounded())
@@ -78,6 +94,16 @@ public class Player : MonoBehaviour
         rb.AddForce(currentDirection * _dashForce, ForceMode2D.Impulse);
     }
 
+    public void Attack()
+    {
+        Debug.Log("Attacked");
+
+
+        Destroy(Instantiate(attack, rb.position, Quaternion.identity), 0.1f);
+        //attack = Instantiate(attack, rb.position, Quaternion.identity);
+        //Destroy(attack, 0.1f);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
@@ -101,7 +127,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Enemy made contact");
             rb.AddForce(-_moveDirection * _knockbackForce, ForceMode2D.Impulse);
-            _lives--;
+
+            if(_lives > 0)
+            {
+                _lives--;
+            }
         }
     }
 
@@ -113,6 +143,25 @@ public class Player : MonoBehaviour
             _score++;
             Destroy(other.gameObject);
         }
+    }
+
+    void SetLivesText()
+    {
+        // Update the count text with the current count.
+        livesText.text = "Lives: " + _lives.ToString();
+
+        // Check if the count has reached or exceeded the win condition.
+        if (_lives <= 0)
+        {
+            // Display the you died text.
+            deadTextObject.SetActive(true);
+        }
+    }
+
+    void SetCoinText()
+    {
+        // Update the count text with the current count.
+        coinText.text = "Coins: " + _score.ToString();
     }
 }
 
