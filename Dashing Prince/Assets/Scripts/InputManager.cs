@@ -19,7 +19,11 @@ public static class InputManager
         _ctrls.InGame.Dash.performed += c => {
             p.Dash(c.ReadValue<Vector2>());
         };
-        
+
+        _ctrls.InGame.Attack.performed += d => {
+            p.Attack();  //action performed
+        };
+
     }
 
     public static void EnableInGame()
