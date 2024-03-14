@@ -4,18 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Collider2D playerCollider;
+    private Transform playerTransform;
+
+    public SceneAsset gameOver;
+
+    Vector3 spawn = new Vector3(-7.12f, 0.14f, 0f);
 
     // UI text component to display lives
     public TextMeshProUGUI livesText;
     // UI text component to display coin count
-    public TextMeshProUGUI coinText;
-    // UI object to display winning text.
-    public GameObject deadTextObject;
+    //public TextMeshProUGUI coinText;
 
     public GameObject attack;
 
@@ -40,16 +45,24 @@ public class Player : MonoBehaviour
         InputManager.EnableInGame();
 
         rb = GetComponent<Rigidbody2D>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
 
-        // Initially set the win text to be inactive.
-        deadTextObject.SetActive(false);
+        if (gameOver != null)
+        {
+            string sceneName = gameOver.name;
+            Debug.Log($"Scene name: {sceneName}");
+        }
+        else
+        {
+            Debug.LogError("Game Over SceneAsset is not assigned!");
+        }
     }
 
     void Update()
     {
         SetLivesText();
 
-        SetCoinText();
+        //SetCoinText();
 
         transform.position += _speed * Time.deltaTime * _moveDirection; //player movement
 
@@ -98,10 +111,17 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Attacked");
 
+        if (_moveDirection != null)
+        {
+            rb.AddForce(_moveDirection * _knockbackForce / 4, ForceMode2D.Impulse);
+        }
+        else 
+        {
+            rb.AddForce(Vector2.right * _knockbackForce / 4, ForceMode2D.Impulse);
+        }
+        
 
         Destroy(Instantiate(attack, rb.position, Quaternion.identity), 0.1f);
-        //attack = Instantiate(attack, rb.position, Quaternion.identity);
-        //Destroy(attack, 0.1f);
     }
 
     private void OnDrawGizmos()
@@ -143,6 +163,17 @@ public class Player : MonoBehaviour
             _score++;
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.tag == "Void")
+        {
+            Debug.Log("out of bounds");
+            playerTransform.position = spawn;
+
+            if (_lives > 0)
+            {
+                _lives--;
+            }
+        }
     }
 
     void SetLivesText()
@@ -154,14 +185,19 @@ public class Player : MonoBehaviour
         if (_lives <= 0)
         {
             // Display the you died text.
-            deadTextObject.SetActive(true);
+            LoadGameOverScene(gameOver);
         }
     }
 
     void SetCoinText()
     {
         // Update the count text with the current count.
-        coinText.text = "Coins: " + _score.ToString();
+        //coinText.text = "Coins: " + _score.ToString();
+    }
+
+    public void LoadGameOverScene(SceneAsset scene)
+    {
+        SceneManager.LoadScene("gameOver");
     }
 }
 
