@@ -19,10 +19,15 @@ public class Player : MonoBehaviour
 
     // UI text component to display lives
     public TextMeshProUGUI livesText;
-    // UI text component to display coin count
-    //public TextMeshProUGUI coinText;
+
+    public GameObject dashTextObject;
 
     public GameObject attack;
+
+    public float dashCooldown = 3f; // Set the cooldown time (in seconds)
+    private float lastDashTime; // Store the time when the ability was last used
+    private bool canDash = true;
+
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -46,6 +51,8 @@ public class Player : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindWithTag("Player").transform;
+
+        dashTextObject.SetActive(false);
 
         if (gameOver != null)
         {
@@ -85,6 +92,17 @@ public class Player : MonoBehaviour
         }
 
         Debug.Log("Score: " + _score);
+
+        if (Time.time > lastDashTime + dashCooldown)
+        {
+            canDash = true;
+            dashTextObject.SetActive(true);
+        }
+        else
+        {
+            canDash = false;
+            dashTextObject.SetActive(false);
+        }
     }
 
     public void SetMovementDirection(Vector2 currentDirection)
@@ -104,7 +122,13 @@ public class Player : MonoBehaviour
     public void Dash(Vector2 currentDirection)
     {
         _dashDirection = currentDirection;
-        rb.AddForce(currentDirection * _dashForce, ForceMode2D.Impulse);
+
+        if (canDash)
+        {
+            rb.AddForce(currentDirection * _dashForce, ForceMode2D.Impulse);
+            lastDashTime = Time.time;
+        }
+        
     }
 
     public void Attack()
