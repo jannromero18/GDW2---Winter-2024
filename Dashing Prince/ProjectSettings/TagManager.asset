@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Attack
   - Void
+  - WalkSpace
   layers:
   - Default
   - TransparentFX
