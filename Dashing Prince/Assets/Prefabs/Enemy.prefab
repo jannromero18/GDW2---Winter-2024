@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lives: 2
   knockbackForce: 15
+  speed: 3
