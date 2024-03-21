@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _lives;
     public float knockbackForce;
 
+    public GameObject health;
+
     public float speed = 1.5f;
     bool movingLeft;
 
@@ -41,6 +43,10 @@ public class Enemy : MonoBehaviour
 
         if (_lives ==  0)
         {
+            if (Random.value > 0.5f) // 50% chance
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }

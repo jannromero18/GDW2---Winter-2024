@@ -209,6 +209,15 @@ public class Player : MonoBehaviour
                 _lives--;
             }
         }
+
+        if (other.gameObject.tag == "Health")
+        {
+
+            if (_lives > 0)
+            {
+                _lives++;
+            }
+        }
     }
 
     void SetLivesText()

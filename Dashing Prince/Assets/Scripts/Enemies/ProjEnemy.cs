@@ -13,6 +13,8 @@ public class ProjEnemy : MonoBehaviour
     public Transform player;
     public LayerMask playerLayer; // Assign the "Player" layer in the Inspector
 
+    public GameObject health;
+
     public float shotCooldown = 3f; // Set the cooldown time (in seconds)
     private float lastShotTime; // Store the time when the last proj was shot
 
@@ -39,6 +41,10 @@ public class ProjEnemy : MonoBehaviour
     {
         if (_lives == 0)
         {
+            if (Random.value > 0.5f) // 50% chance
+            {
+                Instantiate(health, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
 
