@@ -198,6 +198,17 @@ public class Player : MonoBehaviour
                 _lives--;
             }
         }
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy made contact");
+            rb.AddForce(-_moveDirection * _knockbackForce, ForceMode2D.Impulse);
+
+            if (_lives > 0)
+            {
+                _lives--;
+            }
+        }
     }
 
     void SetLivesText()
