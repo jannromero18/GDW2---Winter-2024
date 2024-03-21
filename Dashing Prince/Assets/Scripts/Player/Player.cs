@@ -165,14 +165,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy made contact");
-            rb.AddForce(-_moveDirection * _knockbackForce, ForceMode2D.Impulse);
+            Vector2 collisionNormal = collision.contacts[0].normal;
 
-            if(_lives > 0)
+            // Determine the direction of the collision
+            float dotProduct = Vector2.Dot(collisionNormal, Vector2.right);
+
+            // Apply knockback force based on collision direction
+            if (dotProduct > 0) // Enemy collided from the left
+            {
+                rb.AddForce(Vector2.left * _knockbackForce, ForceMode2D.Impulse);
+            }
+            else // Enemy collided from the right
+            {
+                rb.AddForce(-Vector2.left * _knockbackForce, ForceMode2D.Impulse);
+            }
+
+            if (_lives > 0)
             {
                 _lives--;
             }
