@@ -11,6 +11,7 @@ public class ProjEnemy : MonoBehaviour
 
     public GameObject proj;
     public Transform player;
+    public LayerMask playerLayer; // Assign the "Player" layer in the Inspector
 
     public float shotCooldown = 3f; // Set the cooldown time (in seconds)
     private float lastShotTime; // Store the time when the last proj was shot
@@ -60,9 +61,7 @@ public class ProjEnemy : MonoBehaviour
         float projectileSpeed = 10f; // Example speed
         Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
         projectileRb.velocity = directionToPlayer * projectileSpeed;
-
     }
-
 
     /*  void Knockback()
       {

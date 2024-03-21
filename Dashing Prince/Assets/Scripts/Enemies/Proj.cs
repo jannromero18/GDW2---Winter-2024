@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Proj : MonoBehaviour
 {
-
+    // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 3f);
     }
 
     void OnTriggerEnter2D(Collider2D other)

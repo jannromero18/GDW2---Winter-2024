@@ -11214,11 +11214,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -10.55, y: 6.7}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23.603092, y: 16.4}
+    oldSize: {x: 2.5, y: 3}
     newSize: {x: 23.603092, y: 16.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -11249,7 +11249,7 @@ MonoBehaviour:
   _speed: 20
   _jumpForce: 70
   _dashForce: 50
-  boxSize: {x: 0.5, y: 1}
+  boxSize: {x: 1, y: 2.2}
   castDistance: 0.1
   groundLayer:
     serializedVersion: 2
@@ -11344,7 +11344,7 @@ Transform:
   m_GameObject: {fileID: 1453341022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.99, y: -7.22, z: 0}
+  m_LocalPosition: {x: -7.91, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30878,6 +30878,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1078487116216487887, guid: 451e7f6a34d770f43b7df43d9ad2a262, type: 3}
   m_PrefabInstance: {fileID: 818129885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2024516503
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1057138068518653636, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_Name
+      value: ProjEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.839641
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.3283715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794730737495506013, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864214211456325526, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1453341028}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fa9707ffc52dd5448f76b7df0385f6b, type: 3}
 --- !u!4 &2024973694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1894400942440960588, guid: c5c6ba41c8ef0c447a9eb9c05fc67c47, type: 3}
@@ -31331,3 +31392,4 @@ SceneRoots:
   - {fileID: 2133126991}
   - {fileID: 1874226765}
   - {fileID: 1453341028}
+  - {fileID: 2024516503}
