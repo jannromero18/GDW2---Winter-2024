@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
                 Instantiate(health, transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
+            GameOver.score++;
         }
     }
 

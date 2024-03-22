@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     // UI text component to display lives
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI killsText;
 
     public GameObject dashTextObject;
 
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         SetLivesText();
+        SetKillsText();
 
         //SetCoinText();
 
@@ -243,6 +245,12 @@ public class Player : MonoBehaviour
             // Display the you died text.
             LoadGameOverScene(gameOver);
         }
+    }
+
+    void SetKillsText()
+    {
+        // Update the count text with the current count.
+        killsText.text = "Kills: " + GameOver.score.ToString();
     }
 
     void SetCoinText()
