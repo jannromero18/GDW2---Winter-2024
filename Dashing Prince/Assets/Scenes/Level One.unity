@@ -11455,7 +11455,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _lives: 5
-  _knockbackForce: 10
+  _knockbackForce: 30
 --- !u!50 &1453341026
 Rigidbody2D:
   serializedVersion: 4
@@ -11563,6 +11563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1453341023}
+  isFacingRight: 0
 --- !u!1 &1480949630
 GameObject:
   m_ObjectHideFlags: 0

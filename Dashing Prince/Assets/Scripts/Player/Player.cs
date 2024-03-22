@@ -179,11 +179,13 @@ public class Player : MonoBehaviour
             // Apply knockback force based on collision direction
             if (dotProduct > 0) // Enemy collided from the left
             {
-                rb.AddForce(Vector2.left * _knockbackForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * _knockbackForce, ForceMode2D.Impulse);
+                rb.AddForce(-Vector2.left * _knockbackForce, ForceMode2D.Impulse);
             }
             else // Enemy collided from the right
             {
-                rb.AddForce(-Vector2.left * _knockbackForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * _knockbackForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.left * _knockbackForce, ForceMode2D.Impulse);
             }
 
             if (_lives > 0)

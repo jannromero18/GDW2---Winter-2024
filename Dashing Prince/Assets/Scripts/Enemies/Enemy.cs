@@ -11,12 +11,15 @@ public class Enemy : MonoBehaviour
 
     public GameObject health;
 
+    private Animator death;
+
     public float speed = 1.5f;
     bool movingLeft;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        death = GetComponent<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(health, transform.position, Quaternion.identity);
             }
+            death.SetTrigger("PlayAnimation");
             Destroy(gameObject);
             GameOver.score++;
         }
