@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     {
         while (true) 
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(5f);
 
             // Check if the previous object has been destroyed
             if (spawnedObject == null)
